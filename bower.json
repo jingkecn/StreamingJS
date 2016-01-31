@@ -1,6 +1,6 @@
 {
-  "name": "meanjs",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
+  "name": "streamingjs",
+  "description": "Streaming using JavaScript - Technical project of 5th year.",
   "homepage": "http://meanjs.org/",
   "license": "MIT",
   "dependencies": {
