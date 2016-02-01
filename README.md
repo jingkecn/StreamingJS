@@ -21,6 +21,8 @@ Make sure you have installed all of the following prerequisites on your developm
   * Node v5 IS NOT SUPPORTED AT THIS TIME! 
 * MongoDB - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
 * Ruby - [Download & Install Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+* Python 2.7 - [Download & Install Python 2.7](https://www.python.org/downloads/release/python-2711/)
+* Visual Studio Community 2015 - [Download & Install](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x409) (Custom Install, Select Visual C++ during the installation).
 * Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages. Make sure you've installed Node.js and npm first, then install bower globally using npm:
 
 ```bash
@@ -48,8 +50,6 @@ $ npm install -g grunt-cli
 ```bash
 $ npm install gulp -g
 ```
-
-* Prerequisites for [node-gyp](https://github.com/nodejs/node-gyp) - it's required while installing ```mediainfo-q``` library.
 
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your MEAN application.
