@@ -6,3 +6,10 @@ module.exports.profileUploadFileFilter = function (req, file, cb) {
   }
   cb(null, true);
 };
+
+module.exports.videoUploadFileFilter = function (req, file, cb) {
+  if (file.mimetype !== 'video/mp4' && file.mimetype !== 'video/ogg' && file.mimetype !== 'video/mpeg' && file.mimetype !== 'video/webm') {
+    return cb(new Error('Only video files are allowed!'), false);
+  }
+  cb(null, true);
+};
