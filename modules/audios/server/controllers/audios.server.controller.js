@@ -165,6 +165,8 @@ exports.delete = function (req, res) {
             });
         } else {
             res.json(audio);
+            // remove file
+            fs.unlink(path.resolve(audio.storageUrl));
         }
     });
 };

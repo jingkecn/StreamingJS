@@ -40,7 +40,7 @@ module.exports = {
         audios: {
             dest: './modules/audios/server/uploads/',
             limits: {
-                fileSize: 300 * 1024 * 1024,  // Max file size in bytes (10 MB)
+                fileSize: 3000 * 1024 * 1024,  // Max file size in bytes (10 MB)
                 fileNameSize: 1 * 1024
             }
         },
