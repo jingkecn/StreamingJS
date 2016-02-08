@@ -1,0 +1,66 @@
+<section>
+  <div class="page-header">
+    <h1>Audios</h1>
+  </div>
+  <div class="container-fluid list-group">
+    <!--Audio Player-->
+    <div class="list-group-item col-md-12">
+      <audio autoplay controls ng-src="{{vm.audio._id ? './api/audios/stream/' + vm.audio._id: ''}}"
+             class="col-md-8"></audio>
+      <div class="pull-right" ng-show="vm.audio._id && vm.authentication.user._id == vm.audio.user._id">
+        <a class="btn btn-primary" ng-click="vm.remove()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+      <p class="text-center col-md-12" ng-show="vm.audio._id">
+        Track Name: <span ng-bind="vm.audio.mediaInfo.track_name" class="text-primary"></span>;
+        Album: <span ng-bind="vm.audio.mediaInfo.album" class="text-primary"></span>;
+        Album Performer: <span ng-bind="vm.audio.mediaInfo.album_performer" class="text-primary"></span>;
+        Format: <span ng-bind="vm.audio.mediaInfo.format" class="text-primary"></span>;
+        Duration: <span ng-bind="vm.audio.mediaInfo.duration" class="text-primary"></span>.
+      </p>
+    </div>
+    <!--Audio Uploader-->
+    <div class="list-group-item col-md-12">
+      <div class="col-md-12">
+        <form name="vm.form.audioForm" class="form-horizontal" ng-submit="vm.save(vm.form.audioForm.$valid)" novalidate>
+          <fieldset>
+            <div class="form-group pull-right">
+              <button class="btn btn-default btn-file">
+                Select Audio File <input type="file" nv-file-select uploader="uploader">
+              </button>
+              <button type="submit" class="btn btn-default" ng-click="uploadAudioFile()">{{vm.audio._id ? 'Update':
+                'Upload'}}
+              </button>
+              <button type="submit" class="btn btn-default" ng-click="cancelUpload()">Cancel</button>
+            </div>
+            <div ng-show="audioUploadSuccess" class="text-center text-success">
+              <strong>Audio file successfully uploaded.</strong>
+            </div>
+            <div ng-show="audioUploadError" class="text-center text-danger">
+              <strong ng-bind="audioUploadError"></strong>
+            </div>
+            <progress class="progress col-md-8" value="{{uploadProgress}}" max="100"></progress>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+  <!--Audio List-->
+  <div class="container-fluid list-group">
+    <a ng-repeat="audio in vm.audios" ui-sref="audios.view({ audioId: audio._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Uploaded on <span ng-bind="audio.uploaded | date: 'mediumDate'"></span>
+        by
+        <span ng-if="audio.user" ng-bind="audio.user.displayName"></span>
+        <span ng-if="!audio.user">Unknown user</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="audio.title"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.audios.$resolve && !vm.audios.length">
+    No audios yet, why don't you <a ui-sref="audios.upload">upload one</a>?
+  </div>
+</section>

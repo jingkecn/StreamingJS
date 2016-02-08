@@ -1,0 +1,19 @@
+<section>
+  <div class="page-header">
+    <h1>Audios</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="audio in vm.audios" ui-sref="audios.view({ audioId: audio._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Uploaded on <span ng-bind="audio.uploaded | date: 'mediumDate'"></span>
+        by
+        <span ng-if="audio.user" ng-bind="audio.user.displayName"></span>
+        <span ng-if="!audio.user">Unknown user</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="audio.title"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.audios.$resolve && !vm.audios.length">
+    No audios yet, why don't you <a ui-sref="audios.create">upload one</a>?
+  </div>
+</section>

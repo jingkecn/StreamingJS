@@ -1,0 +1,31 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.audio.title"></h1>
+  </div>
+  <div class="pull-right" ng-show="vm.authentication.user._id == vm.audio.user._id">
+    <a class="btn btn-primary" ui-sref="audios.edit({ audioId: vm.audio._id })">
+      <i class="glyphicon glyphicon-upload"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Uploaded on <span ng-bind="vm.audio.uploaded | date: 'mediumDate'"></span>
+      by
+      <span ng-if="audio.user" ng-bind="audio.user.displayName"></span>
+      <span ng-if="!audio.user">Unknown user</span>
+    </em>
+  </small>
+  <p class="lead">Audio information:</p>
+  <p class="text-primary">Track Name: <span ng-bind="vm.audio.mediaInfo.track_name"></span></p>
+  <p class="text-primary">Album: <span ng-bind="vm.audio.mediaInfo.album"></span></p>
+  <p class="text-primary">Album Performer: <span ng-bind="vm.audio.mediaInfo.album_performer"></span></p>
+  <p class="text-primary">Format: <span ng-bind="vm.audio.mediaInfo.format"></span></p>
+  <p class="text-primary">Duration: <span ng-bind="vm.audio.mediaInfo.duration"></span></p>
+  <p>
+    <audio autoplay controls ng-src="{{'./api/audios/stream/' + vm.audio._id}}"
+           class="col-xs-12"></audio>
+  </p>
+</section>

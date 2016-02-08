@@ -6,3 +6,12 @@ module.exports.profileUploadFileFilter = function (req, file, cb) {
   }
   cb(null, true);
 };
+
+module.exports.audioUploadFileFilter = function (req, file, cb) {
+    if (file.mimetype !== 'audio/mp3' && file.mimetype !== 'audio/ogg' && file.mimetype !== 'audio/wav') {
+        return cb(new Error('Only audio files are allowed!'), false);
+    }
+    cb(null, true);
+};
+
+
