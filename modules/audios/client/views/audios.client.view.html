@@ -6,7 +6,12 @@
     <!--Audio Player-->
     <div class="list-group-item col-md-12">
       <p ng-show="vm.audio">
-      <h4>Current Playing: <span ng-bind="vm.audio.title" class="text-primary"></span></h4>
+        <strong>
+          <h4 class="list-group-item-heading">
+            Current Playing:
+            <span ng-bind="vm.audio.title" class="text-primary"></span>
+          </h4>
+        </strong>
       </p>
       <audio autoplay controls ng-src="{{vm.audio._id ? './api/audios/stream/' + vm.audio._id: ''}}"
              class="col-md-8"></audio>

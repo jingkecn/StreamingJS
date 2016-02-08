@@ -44,6 +44,7 @@ exports.create = function (req, res) {
     }).single('audioUploader');
 
     if (req.user) {
+        audio.user = req.user;
         upload(req, res, function (err) {
             if (err) {
                 console.error(err);
