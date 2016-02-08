@@ -70,6 +70,8 @@
                 fileReader.onprogress = updateProgress;
                 fileReader.onload = function (fileReaderEvent) {
                     $scope.audioUploadOnProgress = false;
+                    $scope.audioUploadSuccess = $scope.audioUploadError = null;
+                    $scope.uploader.uploadAll();
                 };
             }
         };
@@ -81,33 +83,21 @@
             }
         }
 
-        $scope.uploadAudioFile = function () {
-            $scope.audioUploadSuccess = $scope.audioUploadError = null;
-            $scope.uploader.uploadAll();
-        };
-
-        // Cancel the upload process
-        $scope.cancelUpload = function () {
-            $scope.uploader.clearQueue();
-        };
-
         $scope.uploader.onSuccessItem = function (fileItem, res, status, headers) {
             //$scope.fileItem = fileItem;
             console.debug('file item', fileItem);
             $scope.audioUploadSuccess = true;
             $scope.audioUploaded = res;
-            $scope.cancelUpload();
-            $state.go('audios.list', {
-                audioId: null
+            $scope.uploader.clearQueue();
+            $state.go('audios.view', {
+                audioId: res._id
             });
         };
 
         $scope.uploader.onErrorItem = function (fileItem, res, status, headers) {
-            $scope.cancelUpload();
+            $scope.uploader.clearQueue();
             $scope.audioUploadError = res.message;
-            $state.go('audios.list', {
-                audioId: null
-            });
+            $state.go('audios.list');
         };
     }
 })();

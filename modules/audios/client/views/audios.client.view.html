@@ -29,10 +29,10 @@
               <button class="btn btn-default btn-file">
                 Select Audio File <input type="file" nv-file-select uploader="uploader">
               </button>
-              <button type="submit" class="btn btn-default" ng-click="uploadAudioFile()">{{vm.audio._id ? 'Update':
+              <!--<button type="submit" class="btn btn-default" ng-click="uploadAudioFile()">{{vm.audio._id ? 'Update':
                 'Upload'}}
               </button>
-              <button type="submit" class="btn btn-default" ng-click="cancelUpload()">Cancel</button>
+              <button type="submit" class="btn btn-default" ng-click="cancelUpload()">Cancel</button>-->
             </div>
             <div ng-show="audioUploadSuccess" class="text-center text-success">
               <strong>Audio file successfully uploaded.</strong>
@@ -45,8 +45,6 @@
         </form>
       </div>
     </div>
-
-
   </div>
   <!--Audio List-->
   <div class="container-fluid list-group">
@@ -59,8 +57,5 @@
       </small>
       <h4 class="list-group-item-heading" ng-bind="audio.title"></h4>
     </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.audios.$resolve && !vm.audios.length">
-    No audios yet, why don't you <a ui-sref="audios.upload">upload one</a>?
   </div>
 </section>
