@@ -54,7 +54,9 @@ Once you've downloaded the boilerplate and installed all the prerequisites, you'
 
 The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To learn more about the modules installed visit the NPM & Package.json section.
 
-> ***!IMPORTANT!*** Make sure that you have correctly configured the ```node-gyp``` prerequisites, if not, please check it out from [here](https://github.com/nodejs/node-gyp).
+> ***!IMPORTANT!*** 
+
+> Make sure that you have correctly configured the ```node-gyp``` prerequisites, if not, please check it out from [here](https://github.com/nodejs/node-gyp).
 
 To install Node.js dependencies you're going to use npm again. In the application folder run this in the command-line:
 
