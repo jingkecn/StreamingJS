@@ -30,7 +30,9 @@
 
   <!-- Fav Icon -->
   <link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
-
+  <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 -->
+  <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
   <!-- Application CSS Files -->
   {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
 </head>
@@ -53,7 +55,7 @@
 
   <!--Application JavaScript Files-->
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
-
+  <script src="http://vjs.zencdn.net/5.5.3/video.js"></script>
   {% if livereload %}
   <!--Livereload script rendered -->
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
