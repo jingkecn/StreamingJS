@@ -17,10 +17,10 @@ var mongoose = require('mongoose'),
 exports.create = function (req, res) {
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './modules/videos/server/uploadVideos/')
+      cb(null, config.uploads.videos.dest);
     },
     filename: function (req, file, cb) {
-      cb(null, file.originalname)
+      cb(null, file.originalname);
     }
   });
   var videoUploadFileFilter = require(path.resolve('./config/lib/multer')).videoUploadFileFilter;
@@ -77,7 +77,7 @@ exports.delete = function (req, res) {
   var fs = require('fs');
   fs.unlink('./modules/videos/server/uploadVideos/'+video.filename, function (err) {
       if (err)
-        res.json({'message': 'delete file failed!'})
+        res.json({'message': 'delete file failed!'});
       video.remove(function (err) {
         if (err) {
             return res.status(400).send({
@@ -107,8 +107,8 @@ exports.list = function (req, res) {
 };
 
 exports.play = function (req, res) {
-  res.sendFile(path.resolve('./modules/videos/server/uploadVideos/' + req.video.filename));
-}
+  res.sendFile(path.resolve(config.uploads.videos.dest + req.video.filename));
+};
 
 /**
  * Video middleware

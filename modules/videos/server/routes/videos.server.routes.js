@@ -12,7 +12,7 @@ module.exports = function(app) {
     .put(videos.update)
     .delete(videos.delete);
 
-  app.route('/api/videos/play/:videoId').get(videos.play)
+  app.route('/api/videos/play/:videoId').get(videos.play);
 
   // Finish by binding the video middleware
   app.param('videoId', videos.videoByID);

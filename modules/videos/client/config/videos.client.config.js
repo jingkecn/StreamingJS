@@ -9,6 +9,6 @@ angular.module('videos').run(['Menus',
         title: 'Videos',
         state: 'videos',
         roles: ['*']
-    })
+    });
   }
 ]);

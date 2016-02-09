@@ -30,9 +30,9 @@ angular.module('videos').controller('VideosController', ['$scope', '$window', 'A
             fileReader.readAsDataURL(fileItem._file);
             fileReader.onload = function (fileReaderEvent) {
                 $scope.uploader.uploadAll();
-            }
+            };
         }
-    }
+    };
 
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
@@ -51,12 +51,12 @@ angular.module('videos').controller('VideosController', ['$scope', '$window', 'A
 
     $scope.remove = function (video) {
         if (confirm('Are you sure you want to delete?')) {
-            if ($scope.currentvideoId == video._id)
+            if ($scope.currentvideoId === video._id)
                 video.$remove($state.go('videos', {'videoId': ''}));
             else
                 video.$remove($state.reload());
-        };
-    }
+        }
+    };
 
   }
 ]);
