@@ -23,9 +23,7 @@ var multer = require('multer');
  */
 exports.create = function (req, res) {
     var audio = new AudioModel(req.body);
-    /*var audio = new AudioModel({
-     user: req.user
-     });*/
+
     // storage audio file
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -90,15 +88,16 @@ exports.read = function (req, res) {
 exports.stream = function (req, res) {
     var audio = req.audio;
     var file = path.resolve(audio.storageUrl);
+
     /*res.sendFile(file, null, function (err) {
-     if (err) {
-     return res.status(err.statusCode).send({
-     message: errHandler.getErrorMessage(err)
-     });
-     } else {
-     console.log('STREAMING audio: ', audio.title);
-     }
-     });*/
+        if (err) {
+            return res.status(err.statusCode).send({
+                message: errHandler.getErrorMessage(err)
+            });
+        } else {
+            console.log('STREAMING audio: ', audio.title);
+        }
+    });*/
 
     var range = req.headers.range;
     var positions = range.replace(/bytes=/, '').split('-');
