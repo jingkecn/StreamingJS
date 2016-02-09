@@ -1,8 +1,8 @@
 <section>
   <div class="page-header">
-    <h1>Videos{{currentvideoId}}{{success}}</h1>
+    <h1>Videos</h1>
   </div>
-  <video id="my-video" class="video-js" controls preload="auto" with="640" height="264" data-setup="{}" ng-show="currentVideo">
+  <video id="my-video" class="video-js" controls preload="auto" with="640" height="360" data-setup="{}" ng-show="currentVideo">
     <source src="{{currentVideo}}" type="video/mp4">
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -10,27 +10,25 @@
     </p>
   </video>
   <div class="list-group">
-    <a ng-repeat="video in videos" ui-sref="videos({ videoId: video._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="video.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="video.user" ng-bind="video.user.displayName"></span>
-        <span ng-if="!video.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="video.filename"></h4>
-    </a>
-    <a ng-if="videoUploaded" ui-sref="videos({ videoId: videoUploaded._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="videoUploaded.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="videoUploaded.user" ng-bind="videoUploaded.user.displayName"></span>
-        <span ng-if="!videoUploaded.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="videoUploaded.filename"></h4>
-    </a>
+    <div ng-repeat="video in videos">
+      <a ui-sref="videos({ videoId: video._id })" class="list-group-item col-md-10">
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="video.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="video.user" ng-bind="video.user.displayName"></span>
+          <span ng-if="!video.user">Deleted User</span>
+        </small>
+        <h4 class="list-group-item-heading" ng-bind="video.filename"></h4>
+      </a>
+      <div class="pull-right col-md-2" >
+        <a class="btn btn-primary" ng-click="remove(video)">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
   </div>
+  <div class="clearfix "></div>
   <div ng-show="success" class="text-center text-success">
     <strong>Videos Uploaded Successfully</strong>
   </div>
@@ -38,7 +36,6 @@
     <strong ng-bind="error"></strong>
   </div>
   <div class="alert alert-warning text-center">
-    No videos yet, why don't you
     <span class="btn btn-default btn-file" ng-show="user">
       upload one <input type="file" nv-file-select uploader="uploader">
     </span>

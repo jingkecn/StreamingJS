@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('videos').controller('VideosController', ['$scope', '$window', 'Authentication', 'FileUploader', 'Videos', '$stateParams',
-  function ($scope, $window, Authentication, FileUploader, Videos, $stateParams) {
+angular.module('videos').controller('VideosController', ['$scope', '$window', 'Authentication', 'FileUploader', 'Videos', '$stateParams', '$state',
+  function ($scope, $window, Authentication, FileUploader, Videos, $stateParams, $state) {
     // Controller Logic
     // ...
     if ($stateParams.videoId) {
@@ -10,8 +10,6 @@ angular.module('videos').controller('VideosController', ['$scope', '$window', 'A
     $scope.currentvideoId = $stateParams.videoId;
     $scope.user = Authentication.user;
     $scope.videos = Videos.query();
-    console.log($scope.users);
-    console.log($scope.videos);
 
     $scope.uploader = new FileUploader({
         url: 'api/videos',
@@ -39,8 +37,9 @@ angular.module('videos').controller('VideosController', ['$scope', '$window', 'A
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
       $scope.success = true;
-      $scope.videoUploaded = response;
+     // $scope.videoUploaded = response;
       $scope.uploader.clearQueue();
+      $state.go('videos',{'videoId': response._id});
     };
 
     // Called after the user has failed to uploaded a new picture
@@ -50,6 +49,14 @@ angular.module('videos').controller('VideosController', ['$scope', '$window', 'A
       $scope.error = response.message;
     };
 
+    $scope.remove = function (video) {
+        if (confirm('Are you sure you want to delete?')) {
+            if ($scope.currentvideoId == video._id)
+                video.$remove($state.go('videos', {'videoId': ''}));
+            else
+                video.$remove($state.reload());
+        };
+    }
 
   }
 ]);

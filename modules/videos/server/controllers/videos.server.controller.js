@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
 exports.create = function (req, res) {
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './modules/videos/server/uploadVideos')
+      cb(null, './modules/videos/server/uploadVideos/')
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname)
@@ -28,7 +28,7 @@ exports.create = function (req, res) {
     storage: storage,
     fileFilter: videoUploadFileFilter,
     limits: {
-      fileSize: 300*1024*1024
+      fileSize: 2048*1024*1024
     }
   }).single('uploadVideo');
 
@@ -36,7 +36,7 @@ exports.create = function (req, res) {
     upload(req, res, function(uploadError) {
       if (uploadError) {
         return res.status(400).send({
-          message: 'Error occurred while uploading profile picture'
+          message: 'Error occurred while uploading videos'
         });
       }
       var video = new Videos();
@@ -74,16 +74,21 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
   var video = req.video;
-
-  video.remove(function (err) {
-    if (err) {
-        return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-        });
-    } else {
-        res.json(video);
+  var fs = require('fs');
+  fs.unlink('./modules/videos/server/uploadVideos/'+video.filename, function (err) {
+      if (err)
+        res.json({'message': 'delete file failed!'})
+      video.remove(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(video);
+        }
+      });
     }
-  });
+  );
 };
 
 /**
