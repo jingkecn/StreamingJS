@@ -22,6 +22,12 @@ Make sure you have installed all of the following prerequisites on your developm
 * Python 2.7 - [Download & Install Python 2.7](https://www.python.org/downloads/release/python-2711/)
 * Visual Studio Community 2015 - [Download & Install](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x409) (Custom Install, Select Visual C++ during the installation).
 * MediaInfo CLI - [Download & Install MediaInfo](https://mediaarea.net/zh-CN/MediaInfo/Download)
+* Sass - You're going to use [Sass](http://sass-lang.com/) to compile CSS during your grunt task. Make sure you have ruby installed, and then install Sass using gem install:
+
+```bash
+$ gem install sass
+```
+
 * Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages. Make sure you've installed Node.js and npm first, then install bower globally using npm:
 
 ```bash
@@ -29,16 +35,6 @@ $ npm install -g bower
 ```
 
 * Grunt - You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process. Make sure you've installed Node.js and npm first, then install grunt globally using npm:
-
-```bash
-$ npm install -g grunt-cli
-```
-
-* Sass - You're going to use [Sass](http://sass-lang.com/) to compile CSS during your grunt task. Make sure you have ruby installed, and then install Sass using gem install:
-
-```bash
-$ gem install sass
-```
 
 ```bash
 $ npm install -g grunt-cli
