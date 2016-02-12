@@ -74,7 +74,8 @@ exports.update = function (req, res) {
 exports.delete = function (req, res) {
     var video = req.video;
     var fs = require('fs');
-    fs.unlink(config.uploads.videos.dest + video.filename, function (err) {
+    if (req.user) {
+        fs.unlink(config.uploads.videos.dest + video.filename, function (err) {
             if (err)
                 res.json({'message': 'delete file failed!'});
             video.remove(function (err) {
@@ -86,8 +87,8 @@ exports.delete = function (req, res) {
                     res.json(video);
                 }
             });
-        }
-    );
+        });
+    }
 };
 
 /**
