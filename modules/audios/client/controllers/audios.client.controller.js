@@ -84,8 +84,6 @@
         }
 
         $scope.uploader.onSuccessItem = function (fileItem, res, status, headers) {
-            //$scope.fileItem = fileItem;
-            //console.debug('file item', fileItem);
             $scope.uploadProgress = 0;
             $scope.audioUploadSuccess = true;
             $scope.audioUploaded = res;

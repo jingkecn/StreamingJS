@@ -15,18 +15,5 @@
             //type: 'dropdown',
             roles: ['*']
         });
-
-        /*// Add the dropdown list item
-         Menus.addSubMenuItem('topbar', 'audios', {
-         title: 'List Audios',
-         state: 'audios.list'
-         });
-
-         // Add the dropdown list item
-         Menus.addSubMenuItem('topbar', 'audios', {
-         title: 'Create Audios',
-         state: 'audios.create',
-         roles: ['user']
-         });*/
     }
 })();
