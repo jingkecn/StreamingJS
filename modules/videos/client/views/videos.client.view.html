@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>Videos</h1>
   </div>
-  <video id="my-video" class="video-js" controls preload="auto" with="640" height="360" data-setup="{}" ng-show="currentVideo">
+  <video id="my-video" class="video-js" controls autoplay preload="auto" with="640" height="360" data-setup="{}" ng-show="currentVideo">
     <source src="{{currentVideo}}" type="video/mp4">
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -29,13 +29,13 @@
     </div>
   </div>
   <div class="clearfix "></div>
-  <div ng-show="success" class="text-center text-success">
+  <div ng-show="success" class="text-center text-success col-md-10">
     <strong>Videos Uploaded Successfully</strong>
   </div>
-  <div ng-show="error" class="text-center text-danger">
+  <div ng-show="error" class="text-center text-danger col-md-10">
     <strong ng-bind="error"></strong>
   </div>
-  <div class="alert alert-warning text-center">
+  <div class="alert alert-warning text-center col-md-10">
     <span class="btn btn-default btn-file" ng-show="user">
       upload one <input type="file" nv-file-select uploader="uploader">
     </span>
